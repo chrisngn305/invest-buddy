@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --navy: #0d1f3c;
+  --navy2: #152d52;
+  --navy3: #1e3f6e;
+  --gold: #c9a84c;
+  --gold-pale: #f5e9c9;
+  --bg: #f4f1eb;
+  --surface: #ffffff;
+  --border: #e0dbd0;
+  --text: #1a1628;
+  --muted: #7c7585;
+  --green: #15803d;
+  --green-bg: #f0fdf4;
+  --green-bd: #86efac;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --red-bd: #fca5a5;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --amber-bd: #fcd34d;
+  --blue: #1d4ed8;
+  --blue-bg: #eff6ff;
+  --blue-bd: #93c5fd;
+  --sidebar-width: 300px;
+  --topbar-height: 50px;
+
+  /* Element Plus overrides */
+  --el-color-primary: var(--navy);
+  --el-color-primary-light-3: var(--navy3);
+  --el-color-primary-light-5: #4e6a8e;
+  --el-color-primary-light-7: #8ca4c0;
+  --el-color-primary-light-8: #b0c2d5;
+  --el-color-primary-light-9: #dce6f0;
+  --el-color-primary-dark-2: #081526;
+  --el-border-color: var(--border);
+  --el-border-color-light: var(--border);
+  --el-fill-color-blank: var(--surface);
+  --el-bg-color: var(--bg);
+  --el-bg-color-page: var(--bg);
+  --el-text-color-primary: var(--text);
+  --el-text-color-regular: var(--text);
+  --el-text-color-secondary: var(--muted);
+  --el-font-family: 'Plus Jakarta Sans', sans-serif;
+  --el-border-radius-base: 4px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.mono, .num-cell { font-family: 'JetBrains Mono', monospace; }
+
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Element Plus table alignment */
+.el-table th.el-table__cell:not(:first-child) .cell {
+  text-align: right;
+  justify-content: flex-end;
+}
+.el-table td.el-table__cell:not(:first-child) .cell {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Table row class overrides */
+.row-highlight td.el-table__cell { background: var(--blue-bg) !important; font-weight: 600; }
+.row-total td.el-table__cell { background: var(--navy2) !important; color: white !important; font-weight: 700; border-top: 2px solid var(--gold) !important; }
+.row-tinted td.el-table__cell { background: var(--bg) !important; font-weight: 600; }
+.row-navy td.el-table__cell { background: var(--navy) !important; color: white !important; font-weight: 700; }
+.row-red td.el-table__cell { background: var(--red-bg) !important; color: var(--red) !important; font-weight: 700; }
+.row-amber td.el-table__cell { background: var(--amber-bg) !important; font-weight: 700; }
+.row-score td.el-table__cell { background: var(--bg) !important; font-size: 15px !important; }
+.total-val { color: white !important; font-family: 'JetBrains Mono', monospace; }
+
+/* Two-col table row height */
+.two-col .el-table__body tr { height: 40px; }
+.two-col .el-table td.el-table__cell { vertical-align: middle; }
+
+/* Element Plus card styling */
+.el-card {
+  border: 1px solid rgba(197, 198, 206, 0.15) !important;
+  border-radius: 4px !important;
+  box-shadow: 0px 4px 20px rgba(13, 31, 60, 0.06) !important;
+}
+
+/* Element Plus collapse (sidebar accordion) */
+.el-collapse { border: none !important; }
+.el-collapse-item__header {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+  background: transparent !important;
+  padding: 0 16px !important;
+  height: 48px !important;
+}
+.el-collapse-item__wrap { border-bottom: none !important; }
+.el-collapse-item__content { padding-bottom: 0 !important; }
+
+/* Element Plus slider */
+.el-slider { margin-top: 5px; }
+.el-slider__runway { background: var(--border) !important; }
+.el-slider__bar { background: var(--navy) !important; }
+.el-slider__button { border-color: var(--navy) !important; }
+
+/* Element Plus input number */
+.el-input-number { width: 100% !important; }
+.el-input-number .el-input__inner { text-align: left !important; }
+
+/* Element Plus radio button group */
+.el-radio-button__inner { font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 12px !important; }
+
+/* Element Plus alert */
+.el-alert { margin-bottom: 14px; border-radius: 4px !important; }
+
+/* Element Plus divider */
+.el-divider { margin: 20px 0 !important; border-color: var(--border) !important; }
+
+* { transition: color 0.15s, background-color 0.15s, border-color 0.15s; }
+
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-amber { color: var(--amber); }
+.text-blue { color: var(--blue); }
+.text-muted { color: var(--muted); }
+.bold { font-weight: 700; }
