@@ -2,18 +2,15 @@
   <div>
     <!-- Scenario B: forfeited support -->
     <div v-if="result.type === 'B'" class="forfeited-panel">
-      <div class="panel-header red-header">
-        <el-icon><WarningFilled /></el-icon>
-        Government Support Forfeited
-      </div>
-      <el-table :data="forfeitedRows" size="small">
-        <el-table-column prop="item" label="Item" />
-        <el-table-column prop="amount" label="Amount">
-          <template #default="scope">
-            <span :class="scope.row.bold ? 'bold text-red' : 'text-red'">{{ scope.row.amount }}</span>
-          </template>
-        </el-table-column>
-      </el-table>
+      <h3 class="forfeited-title">Forfeited Benefits Table</h3>
+      <table class="forfeited-table">
+        <tbody>
+          <tr v-for="row in forfeitedRows" :key="row.item" :class="row.bold ? 'row-total' : ''">
+            <td class="cell-label">{{ row.item }}</td>
+            <td class="cell-amount" :class="row.bold ? 'amount-total' : ''">{{ row.amount }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Scenarios A and C: eligible schemes -->
@@ -88,7 +85,61 @@ const schemeCards = computed(() => {
 .scheme-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--text); }
 .scheme-amount { font-size: 18px; font-weight: 500; color: var(--navy); }
 .scheme-note { font-size: 11px; color: var(--muted); line-height: 1.4; }
-.forfeited-panel { border: 1px solid var(--red-bd); border-radius: 4px; overflow: hidden; }
-.red-header { background: var(--red-bg); padding: 10px 16px; color: var(--red); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-.bold { font-weight: 700; }
+.forfeited-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--el-border-radius-base);
+  padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.forfeited-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.forfeited-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.forfeited-table tbody tr {
+  border-bottom: 1px solid #f1ede8;
+}
+
+.forfeited-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.cell-label {
+  padding: 10px 8px;
+  color: var(--text);
+}
+
+.cell-amount {
+  padding: 10px 8px;
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--red);
+}
+
+.row-total {
+  background: var(--red-bg);
+}
+
+.row-total .cell-label {
+  font-weight: 700;
+}
+
+.amount-total {
+  font-weight: 700;
+  font-size: 15px;
+}
 </style>

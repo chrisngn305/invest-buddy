@@ -8,6 +8,12 @@
       :holdingYears="inputs.holdingYears"
     />
 
+    <AlertBanner v-if="result.cashBuffer < 0"
+      type="red"
+      title="Capital Shortfall"
+      :message="fDollar(Math.abs(result.cashBuffer)) + ' additional capital required to proceed with this purchase.'"
+    />
+
     <AlertBanner v-if="result.type === 'B'"
       type="red"
       title="Government Support Forfeited"
@@ -22,21 +28,22 @@
 
     <el-alert v-if="result.depositNote" type="info" :closable="false" :title="result.depositNote" style="margin-bottom:14px" />
 
-    <div class="section-title">Government Schemes</div>
-    <SchemesPanel :result="result" />
-
-    <el-divider />
-
-    <div class="two-col">
-      <div>
-        <div class="section-title">Upfront Costs</div>
+    <template v-if="result.type === 'B'">
+      <div class="three-col" style="margin-top: 24px;">
+        <SchemesPanel :result="result" />
         <UpfrontTable :result="result" :inputs="inputs" />
-      </div>
-      <div>
-        <div class="section-title">Loan Details</div>
         <LoanTable :result="result" :inputs="inputs" />
       </div>
-    </div>
+    </template>
+
+    <template v-else>
+      <div class="section-title">Government Schemes</div>
+      <SchemesPanel :result="result" />
+      <div class="two-col" style="margin-top: 24px;">
+        <UpfrontTable :result="result" :inputs="inputs" />
+        <LoanTable :result="result" :inputs="inputs" />
+      </div>
+    </template>
   </div>
 </template>
 <script setup>
@@ -68,5 +75,6 @@ const cgtSaved = computed(() => {
 </script>
 <style scoped>
 .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+.three-col { display: grid; grid-template-columns: 0.65fr 1fr 1fr; gap: 20px; align-items: stretch; }
 </style>

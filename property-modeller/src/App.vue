@@ -1,26 +1,6 @@
 <template>
   <TopBar @calculate="handleCalculate" />
 
-  <!-- Floating shortfall alert — anchored top-right of content area -->
-  <Transition name="pill">
-    <el-alert
-      v-if="resultsStore.hasResults && activeResult && activeResult.cashBuffer < 0"
-      class="shortfall-pill"
-      type="error"
-      :closable="false"
-      show-icon
-    >
-      <template #title>
-        Capital Shortfall — {{ fDollar(Math.abs(activeResult.cashBuffer)) }} required
-      </template>
-      <template #default>
-        <el-button link type="danger" size="small" @click="activeTab = 'overview'">
-          Adjust Finances <el-icon class="el-icon--right"><ArrowRight /></el-icon>
-        </el-button>
-      </template>
-    </el-alert>
-  </Transition>
-
   <div class="layout">
     <Sidebar />
 
@@ -76,8 +56,6 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { ArrowRight } from '@element-plus/icons-vue'
-import { fDollar } from './utils/format.js'
 import { useInputsStore } from './stores/inputs.js'
 import { useResultsStore } from './stores/results.js'
 import TopBar from './components/layout/TopBar.vue'
@@ -111,22 +89,7 @@ function handleCalculate() {
 </script>
 
 <style scoped>
-/* ── Shortfall alert ── */
-.shortfall-pill {
-  position: fixed;
-  top: calc(var(--topbar-height) + 16px);
-  right: 28px;
-  z-index: 90;
-  max-width: 380px;
-  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
-  border-radius: 10px !important;
-}
-
-/* Slide-in from top-right */
-.pill-enter-active, .pill-leave-active { transition: transform 0.22s ease, opacity 0.22s ease; }
-.pill-enter-from, .pill-leave-to { transform: translateY(-8px) scale(0.96); opacity: 0; }
-
-/* Layout — no longer pushes content */
+/* Layout */
 .layout {
   display: flex;
   padding-top: var(--topbar-height);
