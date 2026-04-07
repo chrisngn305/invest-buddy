@@ -1,57 +1,59 @@
 <template>
-  <TopBar @calculate="handleCalculate" />
+  <div>
+    <TopBar @calculate="handleCalculate" />
 
-  <div class="layout">
-    <Sidebar />
+    <div class="layout">
+      <Sidebar />
 
-    <main class="main-content">
-      <EmptyState v-if="!resultsStore.hasResults" @calculate="handleCalculate" />
+      <main class="main-content">
+        <EmptyState v-if="!resultsStore.hasResults" @calculate="handleCalculate" />
 
-      <template v-else>
-        <ScenarioSelector
-          v-if="activeTab !== 'comparison'"
-          v-model="activeScenario"
-        />
+        <template v-else>
+          <ScenarioSelector
+            v-if="activeTab !== 'comparison'"
+            v-model="activeScenario"
+          />
 
-        <OverviewView
-          v-if="activeTab === 'overview'"
-          :result="activeResult"
-          :inputs="inputsStore.$state"
-        />
-        <CashFlowView
-          v-if="activeTab === 'cashflow'"
-          :result="activeResult"
-          :inputs="inputsStore.$state"
-        />
-        <ProjectionsView
-          v-if="activeTab === 'projections'"
-          :result="activeResult"
-          :inputs="inputsStore.$state"
-        />
-        <ComparisonView
-          v-if="activeTab === 'comparison'"
-          :result-a="resultsStore.A"
-          :result-b="resultsStore.B"
-          :result-c="resultsStore.C"
-          :inputs="inputsStore.$state"
-          :winner="resultsStore.winner"
-        />
-      </template>
-    </main>
+          <OverviewView
+            v-if="activeTab === 'overview'"
+            :result="activeResult"
+            :inputs="inputsStore.$state"
+          />
+          <CashFlowView
+            v-if="activeTab === 'cashflow'"
+            :result="activeResult"
+            :inputs="inputsStore.$state"
+          />
+          <ProjectionsView
+            v-if="activeTab === 'projections'"
+            :result="activeResult"
+            :inputs="inputsStore.$state"
+          />
+          <ComparisonView
+            v-if="activeTab === 'comparison'"
+            :result-a="resultsStore.A"
+            :result-b="resultsStore.B"
+            :result-c="resultsStore.C"
+            :inputs="inputsStore.$state"
+            :winner="resultsStore.winner"
+          />
+        </template>
+      </main>
+    </div>
+
+    <nav class="bottom-nav">
+      <button
+        v-for="tab in tabs"
+        :key="tab.id"
+        class="bottom-nav-item"
+        :class="{ active: activeTab === tab.id }"
+        @click="activeTab = tab.id"
+      >
+        <el-icon><component :is="tab.icon" /></el-icon>
+        <span>{{ tab.label }}</span>
+      </button>
+    </nav>
   </div>
-
-  <nav class="bottom-nav">
-    <button
-      v-for="tab in tabs"
-      :key="tab.id"
-      class="bottom-nav-item"
-      :class="{ active: activeTab === tab.id }"
-      @click="activeTab = tab.id"
-    >
-      <el-icon><component :is="tab.icon" /></el-icon>
-      <span>{{ tab.label }}</span>
-    </button>
-  </nav>
 </template>
 
 <script setup>
