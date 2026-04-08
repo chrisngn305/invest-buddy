@@ -17,7 +17,7 @@
 <script setup>
 import { computed } from 'vue'
 
-const props = defineProps(['scoreA', 'scoreB', 'scoreC'])
+const props = defineProps(['scoreA', 'scoreB', 'scoreC', 'weights', 'ratings'])
 
 function stars(n) {
   const filled = '★'.repeat(n)
@@ -38,17 +38,34 @@ const rows = computed(() => {
   const a = props.scoreA || {}
   const b = props.scoreB || {}
   const c = props.scoreC || {}
-  const maxTotal = Math.max(a.total || 0, b.total || 0, c.total || 0)
+  const w = props.weights || { cf: 2, wealth: 1, commute: 1, flex: 1, lifestyle: 1 }
+  const r = props.ratings || { A: {}, B: {}, C: {} }
+
+  const commuteA = r.A?.commute ?? a.commuteScore
+  const commuteB = r.B?.commute ?? b.commuteScore
+  const commuteC = r.C?.commute ?? c.commuteScore
+  const flexA = r.A?.flex ?? a.flexScore
+  const flexB = r.B?.flex ?? b.flexScore
+  const flexC = r.C?.flex ?? c.flexScore
+  const lifestyleA = r.A?.lifestyle ?? a.lifestyleScore
+  const lifestyleB = r.B?.lifestyle ?? b.lifestyleScore
+  const lifestyleC = r.C?.lifestyle ?? c.lifestyleScore
+
+  const totalA = (a.cfScore || 0) * w.cf + (a.wealthScore || 0) * w.wealth + commuteA * w.commute + flexA * w.flex + lifestyleA * w.lifestyle
+  const totalB = (b.cfScore || 0) * w.cf + (b.wealthScore || 0) * w.wealth + commuteB * w.commute + flexB * w.flex + lifestyleB * w.lifestyle
+  const totalC = (c.cfScore || 0) * w.cf + (c.wealthScore || 0) * w.wealth + commuteC * w.commute + flexC * w.flex + lifestyleC * w.lifestyle
+  const maxPossible = 5 * (w.cf + w.wealth + w.commute + w.flex + w.lifestyle)
+
   return [
-    { metric: 'Cash Flow', weight: '×2', rawA: a.cfScore, rawB: b.cfScore, rawC: c.cfScore },
-    { metric: '5-Year Wealth', weight: '×1', rawA: a.wealthScore, rawB: b.wealthScore, rawC: c.wealthScore },
-    { metric: 'Commute', weight: '×1', rawA: a.commuteScore, rawB: b.commuteScore, rawC: c.commuteScore },
-    { metric: 'Flexibility', weight: '×1', rawA: a.flexScore, rawB: b.flexScore, rawC: c.flexScore },
-    { metric: 'Lifestyle', weight: '×1', rawA: a.lifestyleScore, rawB: b.lifestyleScore, rawC: c.lifestyleScore },
+    { metric: 'Cash Flow',     weight: `×${w.cf}`,        rawA: a.cfScore,    rawB: b.cfScore,    rawC: c.cfScore },
+    { metric: 'Wealth Growth', weight: `×${w.wealth}`,    rawA: a.wealthScore, rawB: b.wealthScore, rawC: c.wealthScore },
+    { metric: 'Commute',       weight: `×${w.commute}`,   rawA: commuteA,     rawB: commuteB,     rawC: commuteC },
+    { metric: 'Flexibility',   weight: `×${w.flex}`,      rawA: flexA,        rawB: flexB,        rawC: flexC },
+    { metric: 'Lifestyle',     weight: `×${w.lifestyle}`, rawA: lifestyleA,   rawB: lifestyleB,   rawC: lifestyleC },
     {
-      metric: 'TOTAL', weight: '/35', isTotal: true,
-      rawA: a.total, rawB: b.total, rawC: c.total,
-      winnerCol: a.total >= b.total && a.total >= c.total ? 'A' : b.total >= c.total ? 'B' : 'C'
+      metric: 'TOTAL', weight: `/${maxPossible}`, isTotal: true,
+      rawA: totalA, rawB: totalB, rawC: totalC,
+      winnerCol: totalA >= totalB && totalA >= totalC ? 'A' : totalB >= totalC ? 'B' : 'C'
     }
   ]
 })

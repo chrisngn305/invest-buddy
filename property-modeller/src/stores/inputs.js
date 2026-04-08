@@ -32,7 +32,13 @@ export const useInputsStore = defineStore('inputs', {
     holdingYears: 5,
     rentIncrease: 4,
     incomeGrowth: 2,
-    sellingCostsPct: 2.5
+    sellingCostsPct: 2.5,
+    scoreWeights: { cf: 2, wealth: 1, commute: 1, flex: 1, lifestyle: 1 },
+    scoreRatings: {
+      A: { commute: 2, flex: 1, lifestyle: 2 },
+      B: { commute: 5, flex: 5, lifestyle: 5 },
+      C: { commute: 4, flex: 4, lifestyle: 3 }
+    }
   }),
   getters: {
     totalCapital: (state) => state.savings + state.stocks + state.familyLoan
