@@ -6,11 +6,15 @@
       <Sidebar />
 
       <main class="main-content">
-        <EmptyState v-if="!resultsStore.hasResults" @calculate="handleCalculate" />
+        <MethodologyView v-if="activeTab === 'methodology'" />
 
-        <template v-else>
+        <template v-else-if="activeTab !== 'methodology'">
+          <EmptyState v-if="!resultsStore.hasResults" @calculate="handleCalculate" />
+        </template>
+
+        <template v-if="activeTab !== 'methodology' && resultsStore.hasResults">
           <ScenarioSelector
-            v-if="activeTab !== 'comparison'"
+            v-if="activeTab !== 'comparison' && activeTab !== 'methodology'"
             v-model="activeScenario"
           />
 
@@ -68,6 +72,7 @@ import OverviewView from './views/OverviewView.vue'
 import CashFlowView from './views/CashFlowView.vue'
 import ProjectionsView from './views/ProjectionsView.vue'
 import ComparisonView from './views/ComparisonView.vue'
+import MethodologyView from './views/MethodologyView.vue'
 
 const inputsStore = useInputsStore()
 const resultsStore = useResultsStore()
@@ -79,7 +84,8 @@ const tabs = [
   { id: 'overview', label: 'Overview', icon: 'Grid' },
   { id: 'cashflow', label: 'Cash Flow', icon: 'Wallet' },
   { id: 'projections', label: 'Projections', icon: 'TrendCharts' },
-  { id: 'comparison', label: '3-Way Comparison', icon: 'DataAnalysis' }
+  { id: 'comparison', label: '3-Way Compare', icon: 'DataAnalysis' },
+  { id: 'methodology', label: 'Methodology', icon: 'Document' }
 ]
 
 const activeResult = computed(() => resultsStore[activeScenario.value])
