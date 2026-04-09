@@ -1,6 +1,9 @@
 <template>
   <div class="topbar">
     <div class="topbar-left">
+      <button class="hamburger" @click="$emit('toggle-sidebar')" aria-label="Toggle sidebar">
+        <span></span><span></span><span></span>
+      </button>
       <div class="logo-badge">Brisbane Modeller</div>
       <div class="topbar-links">
         <span class="topbar-link">2026</span>
@@ -14,7 +17,7 @@
 </template>
 
 <script setup>
-defineEmits(['calculate'])
+defineEmits(['calculate', 'toggle-sidebar'])
 </script>
 
 <style scoped>
@@ -52,6 +55,34 @@ defineEmits(['calculate'])
   cursor: default;
 }
 .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+/* Hamburger — hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-right: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+.hamburger:hover span { background: white; }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .topbar-links { display: none; }
+  .logo-badge { font-size: 11px; }
+}
 .calc-btn {
   background: var(--gold) !important;
   border-color: var(--gold) !important;

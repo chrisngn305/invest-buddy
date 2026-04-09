@@ -1,9 +1,11 @@
 <template>
   <div>
-    <TopBar @calculate="handleCalculate" />
+    <TopBar @calculate="handleCalculate" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
 
     <div class="layout">
-      <Sidebar />
+      <Sidebar :open="sidebarOpen" @close="sidebarOpen = false" />
+
+      <div v-if="sidebarOpen" class="sidebar-overlay" @click="sidebarOpen = false" />
 
       <main class="main-content">
         <MethodologyView v-if="activeTab === 'methodology'" />
@@ -79,6 +81,7 @@ const resultsStore = useResultsStore()
 
 const activeTab = ref('overview')
 const activeScenario = ref('A')
+const sidebarOpen = ref(false)
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: 'Grid' },
@@ -111,6 +114,11 @@ function handleCalculate() {
   overflow-y: auto;
 }
 
+/* Sidebar overlay (mobile) */
+.sidebar-overlay {
+  display: none;
+}
+
 /* ── Bottom nav ── */
 .bottom-nav {
   position: fixed;
@@ -128,6 +136,26 @@ function handleCalculate() {
   border-top: 1px solid var(--border);
   box-shadow: 0 -2px 16px rgba(13, 31, 60, 0.05);
   z-index: 40;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 16px 16px 96px;
+  }
+  .bottom-nav {
+    left: 0;
+    padding: 0 8px;
+    height: 60px;
+  }
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 31, 60, 0.4);
+    z-index: 45;
+  }
 }
 .bottom-nav-item {
   display: flex;
@@ -152,4 +180,11 @@ function handleCalculate() {
 }
 .bottom-nav-item.active { color: var(--navy); border-bottom-color: var(--gold); }
 .bottom-nav-item:hover { color: var(--navy); }
+
+@media (max-width: 768px) {
+  .bottom-nav-item span { display: none; }
+  .bottom-nav-item i { font-size: 22px; }
+  .bottom-nav-item { padding-bottom: 0; border-bottom: none; border-top: 2px solid transparent; padding-top: 2px; }
+  .bottom-nav-item.active { border-top-color: var(--gold); border-bottom-color: transparent; }
+}
 </style>

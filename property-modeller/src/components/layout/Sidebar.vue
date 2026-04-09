@@ -1,5 +1,5 @@
 <template>
-  <aside class="sidebar">
+  <aside class="sidebar" :class="{ 'sidebar--open': open }">
     <div class="sidebar-header">
       <h2 class="sidebar-title">Investment Parameters</h2>
       <p class="sidebar-subtitle">Brisbane Metro</p>
@@ -295,12 +295,16 @@
     </div>
 
     <div class="resize-handle" @mousedown="startResize"></div>
+    <button class="sidebar-close" @click="$emit('close')" aria-label="Close sidebar">✕</button>
   </aside>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useInputsStore } from '../../stores/inputs.js'
+
+defineProps({ open: Boolean })
+defineEmits(['close'])
 
 const inputs = useInputsStore()
 const activeNames = ref(['0', '1', '2'])
@@ -478,4 +482,37 @@ function startResize(e) {
 
 /* El-input-number full width */
 :deep(.el-input-number) { width: 100%; }
+
+/* Close button — mobile only */
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.sidebar-close:hover { color: var(--navy); background: var(--bg); }
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-105%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 50;
+    width: min(360px, 88vw) !important;
+    box-shadow: 4px 0 32px rgba(13, 31, 60, 0.18);
+  }
+  .sidebar--open {
+    transform: translateX(0);
+  }
+  .resize-handle { display: none; }
+  .sidebar-close { display: block; }
+  .row-2 { grid-template-columns: 1fr; }
+}
 </style>

@@ -34,6 +34,10 @@ function lastWealth(r) { return lastProj(r).totalWealth }
 
 <style scoped>
 .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+@media (max-width: 768px) {
+  .comp-grid { grid-template-columns: 1fr; }
+}
 .comp-header {
   padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;
   border-radius: 4px 4px 0 0; margin: -20px -20px 0;

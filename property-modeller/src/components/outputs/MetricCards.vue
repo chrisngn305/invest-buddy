@@ -44,6 +44,11 @@ const surplusClass = computed(() => {
 
 <style scoped>
 .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+
+@media (max-width: 768px) {
+  .metric-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .mvalue { font-size: 18px; }
+}
 .metric { display: flex; flex-direction: column; gap: 4px; }
 .mlabel { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.6px; }
 .mvalue { font-size: 22px; font-weight: 500; color: var(--navy); line-height: 1.2; }

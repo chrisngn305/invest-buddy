@@ -133,3 +133,19 @@ body {
 .text-blue { color: var(--blue); }
 .text-muted { color: var(--muted); }
 .bold { font-weight: 700; }
+
+/* ── Mobile responsive globals ── */
+@media (max-width: 768px) {
+  /* Make Element Plus tables scroll horizontally */
+  .el-table { overflow-x: auto !important; }
+  .el-table__body-wrapper { overflow-x: auto !important; }
+
+  /* Tighten card padding on small screens */
+  .el-card__body { padding: 12px !important; }
+
+  /* Prevent text overflow in table cells */
+  .el-table .cell { word-break: keep-all; white-space: nowrap; }
+
+  /* Bottom nav label font size */
+  body { font-size: 13px; }
+}

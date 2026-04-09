@@ -239,4 +239,11 @@ function resetAll() {
 /* Slide transition */
 .weights-slide-enter-active, .weights-slide-leave-active { transition: opacity 0.2s ease, transform 0.2s ease; }
 .weights-slide-enter-from, .weights-slide-leave-to { opacity: 0; transform: translateY(-6px); }
+
+@media (max-width: 768px) {
+  .weights-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ratings-header-row, .ratings-row { grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; }
+  .ratings-col-label { display: none; }
+  .weights-panel { padding: 16px; }
+}
 </style>

@@ -77,4 +77,8 @@ const cgtSaved = computed(() => {
 .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
 .two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
 .three-col { display: grid; grid-template-columns: 0.65fr 1fr 1fr; gap: 20px; align-items: stretch; }
+
+@media (max-width: 768px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+}
 </style>
