@@ -23,8 +23,8 @@ function scoreScenario(type, surplus, totalWealth, allWealths) {
 }
 
 export function calcA(inputs) {
-  const depositPct = Math.max(inputs.depositPct, 5)
-  const depositAmount = inputs.price * depositPct / 100
+  const depositAmount = Math.max(inputs.depositAmount, inputs.price * 0.05)
+  const depositPct = depositAmount / inputs.price * 100
   const baseLoan = inputs.price - depositAmount
   const schemes = assessSchemes(inputs.price, inputs.isNewBuild, inputs.isFHB, depositPct, baseLoan)
   const loanAmount = baseLoan
@@ -34,7 +34,7 @@ export function calcA(inputs) {
   const fhogEligible = inputs.isFHB && inputs.isNewBuild && inputs.price < 750000
   const fhogAmount = fhogEligible ? 30000 : 0
   const upfrontTotal = depositAmount + dutyAmount + legalFees + lifestyleSetup - fhogAmount
-  const availableCapital = inputs.savings + inputs.stocks + inputs.familyLoan
+  const availableCapital = inputs.savings + inputs.stocks
   const cashBuffer = availableCapital - upfrontTotal
   const weeklyNetIncome = netWeekly(inputs.incomeA) + netWeekly(inputs.incomeB)
   const weeklyMortgage = inputs.isIO ? weeklyIO(loanAmount, inputs.ooRate) : weeklyPI(loanAmount, inputs.ooRate, inputs.loanTerm)
@@ -84,15 +84,15 @@ export function calcA(inputs) {
 }
 
 export function calcB(inputs) {
-  const depositPct = Math.max(inputs.depositPct, 10)
-  const depositAmount = inputs.price * depositPct / 100
+  const depositAmount = Math.max(inputs.depositAmount, inputs.price * 0.10)
+  const depositPct = depositAmount / inputs.price * 100
   const baseLoan = inputs.price - depositAmount
   const lmiAmount = calcLMI(baseLoan, inputs.price)
   const loanAmount = baseLoan + lmiAmount
   const dutyAmount = standardDuty(inputs.price)
   const legalFees = 2700
   const upfrontTotal = depositAmount + dutyAmount + legalFees
-  const availableCapital = inputs.savings + inputs.stocks + inputs.familyLoan
+  const availableCapital = inputs.savings + inputs.stocks
   const cashBuffer = availableCapital - upfrontTotal
 
   const fhogForfeited = inputs.isFHB && inputs.isNewBuild && inputs.price < 750000 ? 30000 : 0
@@ -142,7 +142,7 @@ export function calcB(inputs) {
     cgtExempt: false
   })
 
-  const depositNote = inputs.depositPct < 10 ? 'Deposit floored to 10% minimum for investment loans' : null
+  const depositNote = inputs.depositAmount < inputs.price * 0.10 ? 'Deposit floored to 10% minimum for investment loans' : null
 
   return {
     type: 'B',
@@ -189,8 +189,8 @@ export function calcB(inputs) {
 }
 
 export function calcC(inputs) {
-  const depositPct = Math.max(inputs.depositPct, 5)
-  const depositAmount = inputs.price * depositPct / 100
+  const depositAmount = Math.max(inputs.depositAmount, inputs.price * 0.05)
+  const depositPct = depositAmount / inputs.price * 100
   const baseLoan = inputs.price - depositAmount
   const loanAmount = baseLoan
   const fhogEligible = inputs.price < 750000 && inputs.isFHB
@@ -199,7 +199,7 @@ export function calcC(inputs) {
   const cgtExempt = inputs.isFHB && inputs.holdingYears <= 7
   const legalFees = 2700
   const upfrontTotal = depositAmount + legalFees - fhogAmount
-  const availableCapital = inputs.savings + inputs.stocks + inputs.familyLoan
+  const availableCapital = inputs.savings + inputs.stocks
   const cashBuffer = availableCapital - upfrontTotal
 
   const weeklyNetIncome = netWeekly(inputs.incomeA) + netWeekly(inputs.incomeB)

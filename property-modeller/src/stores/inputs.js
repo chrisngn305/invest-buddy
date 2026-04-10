@@ -6,13 +6,12 @@ export const useInputsStore = defineStore('inputs', {
     incomeB: 80000,
     savings: 40000,
     stocks: 5000,
-    familyLoan: 70000,
     weeklyLiving: 612,
     weeklyRentPaid: 520,
     isFHB: true,
     price: 950000,
     isNewBuild: false,
-    depositPct: 10,
+    depositAmount: 95000,
     ooRate: 6.50,
     invRate: 6.80,
     loanTerm: 30,
@@ -41,6 +40,6 @@ export const useInputsStore = defineStore('inputs', {
     }
   }),
   getters: {
-    totalCapital: (state) => state.savings + state.stocks + state.familyLoan
+    totalCapital: (state) => state.savings + state.stocks
   }
 })

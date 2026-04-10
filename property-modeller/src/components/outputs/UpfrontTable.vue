@@ -5,6 +5,15 @@
       Upfront Costs
     </h3>
 
+    <div class="price-ref-row">
+      <span class="row-label">Purchase Price</span>
+      <span class="row-value mono">{{ fDollar(result.price) }}</span>
+    </div>
+
+    <div class="section-divider">
+      <span class="divider-label">Cash Required at Settlement</span>
+    </div>
+
     <div class="rows">
       <div class="cost-row" v-for="row in mainRows" :key="row.key">
         <span class="row-label">{{ row.item }}</span>
@@ -34,8 +43,7 @@ const props = defineProps(['result', 'inputs'])
 const mainRows = computed(() => {
   const r = props.result
   const list = [
-    { key: 'price', item: 'Purchase Price', amount: fDollar(r.price), cls: '' },
-    { key: 'dep',   item: `Cash Deposit (${r.depositPct}%)`, amount: fDollar(r.depositAmount), cls: '' },
+    { key: 'dep',   item: `Cash Deposit (${r.depositPct.toFixed(1)}%)`, amount: fDollar(r.depositAmount), cls: '' },
     { key: 'duty',  item: 'Stamp Duty', amount: fDollar(r.dutyAmount), cls: r.dutyAmount === 0 ? 'val-green' : 'val-red' },
     { key: 'legal', item: 'Legal Fees', amount: fDollar(r.legalFees), cls: '' },
   ]
@@ -80,6 +88,54 @@ const mainRows = computed(() => {
   flex-direction: column;
   gap: 0;
   flex: 1;
+}
+
+.price-ref-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.price-ref-row .row-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.price-ref-row .row-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 .cost-row {

@@ -1,5 +1,5 @@
 <template>
-  <aside class="sidebar" :class="{ 'sidebar--open': open }">
+  <aside ref="sidebarEl" class="sidebar" :class="{ 'sidebar--open': open }">
     <div class="sidebar-header">
       <h2 class="sidebar-title">Investment Parameters</h2>
       <p class="sidebar-subtitle">Brisbane Metro</p>
@@ -46,13 +46,6 @@
               <template #prefix><span class="input-prefix">$</span></template>
             </el-input-number>
             </div>
-          </div>
-          <div class="field">
-            <label>Family Loan</label>
-            <el-input-number v-model="inputs.familyLoan" :min="0" :step="1000" :precision="0"
-              controls-position="right" :formatter="fmtDollar" :parser="parseDollar">
-              <template #prefix><span class="input-prefix">$</span></template>
-            </el-input-number>
           </div>
           <div class="row-2">
             <div class="field">
@@ -104,24 +97,29 @@
             </el-radio-group>
           </div>
           <div class="field">
-            <label>Deposit <span class="mono val-display">{{ inputs.depositPct }}%</span></label>
-            <el-slider v-model="inputs.depositPct" :min="5" :max="30" :step="1" />
+            <label>Deposit</label>
+            <el-input-number v-model="inputs.depositAmount" :min="0" :step="5000" :precision="0"
+              controls-position="right" :formatter="fmtDollar" :parser="parseDollar">
+              <template #prefix><span class="input-prefix">$</span></template>
+            </el-input-number>
           </div>
           <div class="row-2">
             <div class="field">
-              <label>OO Rate <span class="mono val-display">{{ inputs.ooRate.toFixed(2) }}%</span></label>
-              <el-slider v-model="inputs.ooRate" :min="4" :max="12" :step="0.05" />
+              <label>OO Rate</label>
+              <el-input-number v-model="inputs.ooRate" :min="0" :max="20" :step="0.25" :precision="2"
+                controls-position="right" :formatter="v => `${v}%`" :parser="v => v.replace('%', '')" />
             </div>
             <div class="field">
-              <label>Inv Rate <span class="mono val-display">{{ inputs.invRate.toFixed(2) }}%</span></label>
-              <el-slider v-model="inputs.invRate" :min="4" :max="12" :step="0.05" />
+              <label>Inv Rate</label>
+              <el-input-number v-model="inputs.invRate" :min="0" :max="20" :step="0.25" :precision="2"
+                controls-position="right" :formatter="v => `${v}%`" :parser="v => v.replace('%', '')" />
             </div>
           </div>
           <div class="row-2">
             <div class="field">
               <label>Loan Term</label>
               <el-input-number v-model="inputs.loanTerm" :min="10" :max="30" :precision="0"
-                controls-position="right" :formatter="v => `${v} yr`" :parser="v => v.replace(' yr', '')" />
+                controls-position="right" :formatter="v => `${v} year`" :parser="v => v.replace(' year', '')" />
             </div>
             <div class="field">
               <label>Repayment Type</label>
@@ -300,7 +298,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useInputsStore } from '../../stores/inputs.js'
 
 defineProps({ open: Boolean })
@@ -308,6 +306,13 @@ defineEmits(['close'])
 
 const inputs = useInputsStore()
 const activeNames = ref(['0', '1', '2'])
+const sidebarEl = ref(null)
+
+onMounted(() => {
+  sidebarEl.value?.querySelectorAll('.el-input-number input').forEach(input => {
+    input.setAttribute('inputmode', 'decimal')
+  })
+})
 
 const fmtDollar = v => `$ ${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 const parseDollar = v => v.replace(/\$\s?|(,*)/g, '')
