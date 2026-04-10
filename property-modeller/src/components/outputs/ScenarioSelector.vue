@@ -20,7 +20,6 @@ defineEmits(['update:modelValue'])
 const scenarios = [
   { id: 'A', label: 'Buy to Live' },
   { id: 'B', label: 'Rentvest' },
-  { id: 'C', label: 'Smart Hybrid' }
 ]
 </script>
 <style scoped>
