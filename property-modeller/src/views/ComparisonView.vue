@@ -31,13 +31,13 @@
         </div>
         <el-divider style="margin: 16px 0 20px" />
 
-        <div class="panel-sub-title">Personal Ratings — Your Experience per Scenario</div>
+        <div class="panel-sub-title">Personal Ratings: Your Experience per Scenario</div>
         <div class="ratings-table">
           <div class="ratings-header-row">
             <div class="ratings-col-label"></div>
-            <div class="ratings-col-header scenario-a">A — Own &amp; Live</div>
-            <div class="ratings-col-header scenario-b">B — Rent &amp; Invest</div>
-            <div class="ratings-col-header scenario-c">C — Hybrid</div>
+            <div class="ratings-col-header scenario-a">A: Own &amp; Live</div>
+            <div class="ratings-col-header scenario-b">B: Rent &amp; Invest</div>
+            <div class="ratings-col-header scenario-c">C: Hybrid</div>
           </div>
           <div v-for="m in subjectiveMetrics" :key="m.key" class="ratings-row">
             <div class="ratings-col-label">
@@ -65,12 +65,12 @@
 
     <el-divider />
 
-    <div class="section-title">Sensitivity Analysis — Total Wealth at Year {{ inputs.holdingYears }}</div>
+    <div class="section-title">Sensitivity Analysis of Total Wealth at Year {{ inputs.holdingYears }}</div>
     <SensitivityTable :inputs="inputs" :resultA="resultA" :resultB="resultB" :resultC="resultC" />
 
     <el-divider />
 
-    <div class="section-title">Total Wealth Trajectory — All Scenarios</div>
+    <div class="section-title">Total Wealth Trajectory Across All Scenarios</div>
     <TrajectoryChart :projsA="resultA.projs" :projsB="resultB.projs" :projsC="resultC.projs" :height="300" />
   </div>
 </template>

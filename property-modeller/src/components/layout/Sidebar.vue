@@ -66,7 +66,7 @@
           <div class="field">
             <label>First Home Buyer?</label>
             <el-radio-group v-model="inputs.isFHB" size="small">
-              <el-radio-button :value="true">Yes — FHB</el-radio-button>
+              <el-radio-button :value="true">Yes</el-radio-button>
               <el-radio-button :value="false">No</el-radio-button>
             </el-radio-group>
           </div>
@@ -507,7 +507,7 @@ function startResize(e) {
 /* El-input-number full width */
 :deep(.el-input-number) { width: 100%; }
 
-/* Close button — mobile only */
+/* Close button for mobile only */
 .sidebar-close {
   display: none;
   position: absolute;

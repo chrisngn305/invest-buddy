@@ -3,21 +3,21 @@
     <AlertBanner v-if="result.type === 'C'"
       type="blue"
       title="Two-Phase Strategy"
-      :message="'<strong>Phase 1 (live in):</strong> Weekly surplus ' + fDollar(result.ph1Surplus) + '/pw — OO rate, commute extra, no CBD rent.<br><strong>Phase 2 (rent out):</strong> Weekly surplus ' + fDollar(result.ph2Surplus) + '/pw — INV rate, back in CBD, rental income offset.'"
+      :message="'<strong>Phase 1 (live in):</strong> Weekly surplus ' + fDollar(result.ph1Surplus) + '/pw at the OO rate, including the commute extra and no CBD rent.<br><strong>Phase 2 (rent out):</strong> Weekly surplus ' + fDollar(result.ph2Surplus) + '/pw at the INV rate, back in the CBD and offset by rental income.'"
     />
 
     <AlertBanner v-if="result.weeklySurplus < 0"
       type="red"
       title="Weekly Deficit"
-      :message="'This scenario creates a weekly deficit of ' + fDollar(Math.abs(result.weeklySurplus)) + ' — review your inputs.'"
+      :message="'This scenario creates a weekly deficit of ' + fDollar(Math.abs(result.weeklySurplus)) + '. Please review your inputs.'"
     />
 
-    <div class="section-title">Weekly Cash Flow — {{ result.label }}</div>
+    <div class="section-title">Weekly Cash Flow for {{ result.label }}</div>
     <CashFlowTable :result="result" :inputs="inputs" />
 
     <template v-if="result.type === 'B' || result.type === 'C'">
       <el-divider />
-      <div class="section-title">Annual Investment P&amp;L — Year 1</div>
+      <div class="section-title">Annual Investment P&amp;L for Year 1</div>
       <PnLTable :result="result" :inputs="inputs" />
     </template>
 

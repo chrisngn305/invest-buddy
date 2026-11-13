@@ -3,14 +3,14 @@
 
     <section class="m-section">
       <h2 class="m-title">Income Tax &amp; Take-Home Pay</h2>
-      <p class="m-desc">ATO 2025–26 resident tax brackets plus 2% Medicare levy, applied to each person's gross annual income.</p>
+      <p class="m-desc">ATO 2025-26 resident tax brackets plus 2% Medicare levy, applied to each person's gross annual income.</p>
       <table class="m-table">
         <thead><tr><th>Taxable Income</th><th>Tax on Bracket</th><th>Marginal Rate</th></tr></thead>
         <tbody>
-          <tr><td>$0 – $18,200</td><td>Nil</td><td>0%</td></tr>
-          <tr><td>$18,201 – $45,000</td><td>19¢ per $1 over $18,200</td><td>19%</td></tr>
-          <tr><td>$45,001 – $120,000</td><td>$5,092 + 32.5¢ per $1 over $45,000</td><td>32.5%</td></tr>
-          <tr><td>$120,001 – $180,000</td><td>$29,467 + 37¢ per $1 over $120,000</td><td>37%</td></tr>
+          <tr><td>$0 to $18,200</td><td>Nil</td><td>0%</td></tr>
+          <tr><td>$18,201 to $45,000</td><td>19¢ per $1 over $18,200</td><td>19%</td></tr>
+          <tr><td>$45,001 to $120,000</td><td>$5,092 + 32.5¢ per $1 over $45,000</td><td>32.5%</td></tr>
+          <tr><td>$120,001 to $180,000</td><td>$29,467 + 37¢ per $1 over $120,000</td><td>37%</td></tr>
           <tr><td>$180,001+</td><td>$51,667 + 45¢ per $1 over $180,000</td><td>45%</td></tr>
         </tbody>
       </table>
@@ -23,10 +23,10 @@
       <table class="m-table">
         <thead><tr><th>Property Value</th><th>Standard Duty</th></tr></thead>
         <tbody>
-          <tr><td>$0 – $5,000</td><td>Nil</td></tr>
-          <tr><td>$5,001 – $75,000</td><td>1.5% of excess over $5,000</td></tr>
-          <tr><td>$75,001 – $540,000</td><td>$1,050 + 3.5% of excess over $75,000</td></tr>
-          <tr><td>$540,001 – $1,000,000</td><td>$17,325 + 4.5% of excess over $540,000</td></tr>
+          <tr><td>$0 to $5,000</td><td>Nil</td></tr>
+          <tr><td>$5,001 to $75,000</td><td>1.5% of excess over $5,000</td></tr>
+          <tr><td>$75,001 to $540,000</td><td>$1,050 + 3.5% of excess over $75,000</td></tr>
+          <tr><td>$540,001 to $1,000,000</td><td>$17,325 + 4.5% of excess over $540,000</td></tr>
           <tr><td>$1,000,001+</td><td>$38,025 + 5.75% of excess over $1,000,000</td></tr>
         </tbody>
       </table>
@@ -34,9 +34,9 @@
       <table class="m-table">
         <thead><tr><th>Condition</th><th>Duty Payable</th></tr></thead>
         <tbody>
-          <tr><td>FHB + New Build (any price)</td><td>$0 — fully exempt</td></tr>
-          <tr><td>FHB + Established, price &lt; $700k</td><td>$0 — fully exempt</td></tr>
-          <tr><td>FHB + Established, $700k – $800k</td><td>Standard duty minus taper: $17,325 × (($800k − price) ÷ $100k)</td></tr>
+          <tr><td>FHB + New Build (any price)</td><td>$0 (fully exempt)</td></tr>
+          <tr><td>FHB + Established, price &lt; $700k</td><td>$0 (fully exempt)</td></tr>
+          <tr><td>FHB + Established, $700k to $800k</td><td>Standard duty minus taper: $17,325 × (($800k − price) ÷ $100k)</td></tr>
           <tr><td>FHB + Established, price &gt; $800k</td><td>Full standard duty</td></tr>
           <tr><td>Investor (Scenario B)</td><td>Always full standard duty</td></tr>
         </tbody>
@@ -51,9 +51,9 @@
         <thead><tr><th>LVR</th><th>LMI Rate</th></tr></thead>
         <tbody>
           <tr><td>≤ 80%</td><td>Nil</td></tr>
-          <tr><td>80.01% – 85%</td><td>0.66% of loan</td></tr>
-          <tr><td>85.01% – 90%</td><td>1.60% of loan</td></tr>
-          <tr><td>90.01% – 95%</td><td>2.40% of loan</td></tr>
+          <tr><td>80.01% to 85%</td><td>0.66% of loan</td></tr>
+          <tr><td>85.01% to 90%</td><td>1.60% of loan</td></tr>
+          <tr><td>90.01% to 95%</td><td>2.40% of loan</td></tr>
           <tr><td>&gt; 95%</td><td>3.00% of loan</td></tr>
         </tbody>
       </table>
@@ -119,8 +119,8 @@
       <table class="m-table">
         <thead><tr><th>Method</th><th>Rate</th></tr></thead>
         <tbody>
-          <tr><td>Auto — New Build</td><td>1.2% of purchase price per year</td></tr>
-          <tr><td>Auto — Established</td><td>0.4% of purchase price per year</td></tr>
+          <tr><td>Auto (new build)</td><td>1.2% of purchase price per year</td></tr>
+          <tr><td>Auto (established)</td><td>0.4% of purchase price per year</td></tr>
           <tr><td>Manual</td><td>User-supplied annual figure</td></tr>
         </tbody>
       </table>
@@ -142,7 +142,7 @@
       <p class="m-desc">Modelled year-by-year for the holding period. Property value, loan balance, equity, and cumulative savings compound annually.</p>
       <div class="m-formula">
         Property Value (year Y) = Price × ∏(1 + Growth Rate)<br>
-        <span class="m-formula-note">Growth Rate = Year 1–2: Y1 rate; Year 3+: Y3 rate</span>
+        <span class="m-formula-note">Growth Rate = Y1 rate for Years 1 and 2, then Y3 rate from Year 3 onwards</span>
       </div>
       <div class="m-formula" style="margin-top:10px">
         Equity = Property Value − Loan Balance<br>
@@ -156,17 +156,17 @@
     <section class="m-section">
       <h2 class="m-title">Cash Flow Formulas by Scenario</h2>
 
-      <div class="m-sub-title">Scenario A — Buy to Live (PPOR)</div>
+      <div class="m-sub-title">Scenario A: Buy to Live (PPOR)</div>
       <div class="m-formula">
         Weekly Surplus = Net Income − Mortgage (OO) − Council − Insurance − Maintenance − Body Corp − Lifestyle Inflation ($150) − Living Costs
       </div>
 
-      <div class="m-sub-title" style="margin-top:16px">Scenario B — Rentvest</div>
+      <div class="m-sub-title" style="margin-top:16px">Scenario B: Rentvest</div>
       <div class="m-formula">
         Weekly Surplus = Net Income − Mortgage (INV) − Rent Paid + Rent Received − Mgmt Fee − Council − Insurance − Maintenance − Body Corp + Tax Saving − Living Costs
       </div>
 
-      <div class="m-sub-title" style="margin-top:16px">Scenario C — Hybrid (Two Phases)</div>
+      <div class="m-sub-title" style="margin-top:16px">Scenario C: Hybrid (Two Phases)</div>
       <div class="m-formula">
         Phase 1 (living in): Net Income − Mortgage (OO) − Owner Costs − Commute Extra − Living Costs<br>
         Phase 2 (rented out): Net Income − Mortgage (INV) − Rent Paid + Rent Received − Mgmt Fee − Owner Costs + Tax Saving − Living Costs
@@ -177,13 +177,13 @@
     <section class="m-section">
       <h2 class="m-title">Upfront Cost Summary</h2>
       <table class="m-table">
-        <thead><tr><th>Item</th><th>A — PPOR</th><th>B — Rentvest</th><th>C — Hybrid</th></tr></thead>
+        <thead><tr><th>Item</th><th>A: PPOR</th><th>B: Rentvest</th><th>C: Hybrid</th></tr></thead>
         <tbody>
           <tr><td>Min Deposit</td><td>5% of price</td><td>10% of price</td><td>5% of price</td></tr>
           <tr><td>Stamp Duty</td><td>FHB concession</td><td>Full standard duty</td><td>$0 (new build FHB)</td></tr>
           <tr><td>LMI</td><td>Waived (FHBG)</td><td>Capitalised on loan</td><td>Waived (FHBG)</td></tr>
           <tr><td>Legal Fees</td><td>$3,200</td><td>$2,700</td><td>$2,700</td></tr>
-          <tr><td>Lifestyle Setup</td><td>$10,000</td><td>—</td><td>—</td></tr>
+          <tr><td>Lifestyle Setup</td><td>$10,000</td><td>None</td><td>None</td></tr>
           <tr><td>FHOG</td><td>−$30,000 (if eligible)</td><td>Forfeited</td><td>−$30,000 (if eligible)</td></tr>
         </tbody>
       </table>
@@ -192,7 +192,7 @@
 
     <section class="m-section">
       <h2 class="m-title">Weighted Scoring</h2>
-      <p class="m-desc">Each scenario is scored 1–5 on five metrics, then multiplied by configurable weights. Cash flow and wealth are derived from inputs; commute, flexibility, and lifestyle can be rated manually.</p>
+      <p class="m-desc">Each scenario is scored from 1 to 5 on five metrics, then multiplied by configurable weights. Cash flow and wealth are derived from inputs; commute, flexibility, and lifestyle can be rated manually.</p>
       <table class="m-table">
         <thead><tr><th>Metric</th><th>Default Weight</th><th>How Score is Derived</th></tr></thead>
         <tbody>
@@ -210,7 +210,7 @@
 </template>
 
 <script setup>
-// Static documentation — no logic needed
+// Static documentation, so no logic is needed
 </script>
 
 <style scoped>

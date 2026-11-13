@@ -59,7 +59,7 @@ defineEmits(['calculate', 'toggle-sidebar'])
 }
 .topbar-right { display: flex; align-items: center; gap: 12px; }
 
-/* Hamburger — hidden on desktop */
+/* Hamburger is hidden on desktop */
 .hamburger {
   display: none;
   flex-direction: column;

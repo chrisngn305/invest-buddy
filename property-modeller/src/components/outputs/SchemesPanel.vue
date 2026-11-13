@@ -53,21 +53,21 @@ const schemeCards = computed(() => {
       status: r.fhogEligible ? 'Eligible' : 'Not Eligible',
       dotColor: r.fhogEligible ? 'green' : 'red',
       amount: r.fhogEligible ? fDollar(r.fhogAmount) : '$0',
-      note: r.fhogEligible ? 'New build < $750k' : r.price >= 750000 ? 'Price exceeds $750k cap' : 'Established property — not eligible'
+      note: r.fhogEligible ? 'New build < $750k' : r.price >= 750000 ? 'Price exceeds $750k cap' : 'Established properties are not eligible'
     },
     {
       name: 'First Home Buyer Guarantee',
       status: r.fhbgEligible ? 'Eligible' : 'Not Eligible',
       dotColor: r.fhbgEligible ? 'green' : 'red',
       amount: r.fhbgEligible ? 'LMI Waived' : 'LMI Applies',
-      note: r.fhbgEligible ? 'No LMI required — saves ' + fDollar(r.lmiSaved) : r.price > 1000000 ? 'Price exceeds $1M cap' : 'Not eligible'
+      note: r.fhbgEligible ? 'No LMI required, saving ' + fDollar(r.lmiSaved) : r.price > 1000000 ? 'Price exceeds $1M cap' : 'Not eligible'
     },
     {
       name: 'Stamp Duty Concession',
       status: r.dutyAmount === 0 ? 'Fully Exempt' : r.dutySaved > 0 ? 'Partial Concession' : 'No Concession',
       dotColor: r.dutyAmount === 0 ? 'green' : r.dutySaved > 0 ? 'amber' : 'red',
       amount: r.dutySaved > 0 ? fDollar(r.dutySaved) + ' saved' : r.dutyAmount === 0 ? '$0 duty payable' : fDollar(r.dutyAmount) + ' due',
-      note: r.dutyAmount === 0 ? 'FHB new build concession applied' : r.dutySaved > 0 ? 'Partial taper between $700k–$800k' : 'Price > $800k — full duty applies'
+      note: r.dutyAmount === 0 ? 'FHB new build concession applied' : r.dutySaved > 0 ? 'Partial taper between $700k and $800k' : 'Price is over $800k, so full duty applies'
     }
   ]
 })

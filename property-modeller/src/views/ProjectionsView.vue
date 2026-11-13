@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="section-title">Year-by-Year Projection — {{ result.label }}</div>
+    <div class="section-title">Year-by-Year Projection for {{ result.label }}</div>
     <ProjectionTable :projs="result.projs" :holdingYears="inputs.holdingYears" :isIO="inputs.isIO" />
 
     <el-divider />

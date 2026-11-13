@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-alert v-if="isIO" type="warning" :closable="false" title="Interest Only selected — loan balance does not reduce over time" style="margin-bottom:12px" />
+    <el-alert v-if="isIO" type="warning" :closable="false" title="Interest Only is selected, so the loan balance does not reduce over time" style="margin-bottom:12px" />
     <el-table :data="projs" size="small" :row-class-name="getRowClass">
       <el-table-column prop="year" label="Year" />
       <el-table-column prop="propertyValue" label="Property Value">

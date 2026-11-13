@@ -2,13 +2,13 @@
   <el-table :data="rows" size="small" :row-class-name="getRowClass">
     <el-table-column prop="metric" label="Metric" />
     <el-table-column prop="weight" label="Weight" />
-    <el-table-column prop="scoreA" label="A — PPOR">
+    <el-table-column prop="scoreA" label="A: PPOR">
       <template #default="scope"><span v-html="renderCell(scope.row.rawA, scope.row.isTotal, scope.row.winnerCol === 'A')"></span></template>
     </el-table-column>
-    <el-table-column prop="scoreB" label="B — Rentvest">
+    <el-table-column prop="scoreB" label="B: Rentvest">
       <template #default="scope"><span v-html="renderCell(scope.row.rawB, scope.row.isTotal, scope.row.winnerCol === 'B')"></span></template>
     </el-table-column>
-    <el-table-column prop="scoreC" label="C — Hybrid">
+    <el-table-column prop="scoreC" label="C: Hybrid">
       <template #default="scope"><span v-html="renderCell(scope.row.rawC, scope.row.isTotal, scope.row.winnerCol === 'C')"></span></template>
     </el-table-column>
   </el-table>

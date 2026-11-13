@@ -1,13 +1,13 @@
 <template>
   <el-table :data="rows" size="small">
     <el-table-column prop="scenario" label="Growth Scenario" />
-    <el-table-column prop="wealthA" label="A — PPOR">
+    <el-table-column prop="wealthA" label="A: PPOR">
       <template #default="scope"><span class="mono">{{ scope.row.wealthA }}</span></template>
     </el-table-column>
-    <el-table-column prop="wealthB" label="B — Rentvest (after CGT)">
+    <el-table-column prop="wealthB" label="B: Rentvest (after CGT)">
       <template #default="scope"><span class="mono">{{ scope.row.wealthB }}</span></template>
     </el-table-column>
-    <el-table-column prop="wealthC" label="C — Hybrid (after CGT)">
+    <el-table-column prop="wealthC" label="C: Hybrid (after CGT)">
       <template #default="scope"><span class="mono">{{ scope.row.wealthC }}</span></template>
     </el-table-column>
     <el-table-column prop="gap" label="B vs A Gap">

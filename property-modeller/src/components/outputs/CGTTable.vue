@@ -24,7 +24,7 @@ const rows = computed(() => {
     { item: 'Selling Costs (' + props.sellingCostsPct + '%)', amount: '-' + fDollar(sellingCosts), cls: 'text-red' },
     { item: 'Gross Capital Gain', amount: fDollar(c.grossGain), cls: c.grossGain > 0 ? 'text-green' : 'text-red' },
     { item: '50% CGT Discount Applied', amount: c.exempt ? 'N/A (Exempt)' : '-' + fDollar(c.grossGain / 2), cls: 'text-muted' },
-    { item: 'CGT Payable', amount: c.exempt ? '$0 — EXEMPT' : fDollar(c.totalCGT), cls: c.exempt ? 'text-green bold' : 'text-red bold', isCGT: true },
+    { item: 'CGT Payable', amount: c.exempt ? '$0 (EXEMPT)' : fDollar(c.totalCGT), cls: c.exempt ? 'text-green bold' : 'text-red bold', isCGT: true },
     { item: 'Net Equity After CGT', amount: fDollar(c.netProceeds), cls: 'bold', isNet: true }
   ]
 })

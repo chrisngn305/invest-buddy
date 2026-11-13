@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="legend">
-      <span><span class="dot" style="background:#1e40af"></span> A — PPOR</span>
-      <span><span class="dot" style="background:#15803d"></span> B — Rentvest</span>
-      <span><span class="dot" style="background:#92400e"></span> C — Hybrid</span>
+      <span><span class="dot" style="background:#1e40af"></span> A: PPOR</span>
+      <span><span class="dot" style="background:#15803d"></span> B: Rentvest</span>
+      <span><span class="dot" style="background:#92400e"></span> C: Hybrid</span>
     </div>
     <div :style="{ position: 'relative', height: height + 'px' }">
       <Line :data="chartData" :options="chartOptions" />
@@ -26,9 +26,9 @@ const fmtY = v => '$' + (v >= 1000000 ? (v/1000000).toFixed(1)+'M' : v >= 1000 ?
 const chartData = computed(() => ({
   labels: props.projsA.map(p => 'Yr ' + p.year),
   datasets: [
-    { label: 'A — PPOR', data: props.projsA.map(p => p.totalWealth), borderColor: '#1e40af', backgroundColor: 'rgba(30,64,175,0.07)', fill: true, tension: 0.4, borderWidth: 2, pointRadius: 3 },
-    { label: 'B — Rentvest', data: props.projsB.map(p => p.totalWealth), borderColor: '#15803d', backgroundColor: 'rgba(21,128,61,0.07)', fill: true, tension: 0.4, borderWidth: 2, pointRadius: 3 },
-    { label: 'C — Hybrid', data: props.projsC.map(p => p.totalWealth), borderColor: '#92400e', backgroundColor: 'rgba(146,64,14,0.07)', fill: true, tension: 0.4, borderWidth: 2, pointRadius: 3 }
+    { label: 'A: PPOR', data: props.projsA.map(p => p.totalWealth), borderColor: '#1e40af', backgroundColor: 'rgba(30,64,175,0.07)', fill: true, tension: 0.4, borderWidth: 2, pointRadius: 3 },
+    { label: 'B: Rentvest', data: props.projsB.map(p => p.totalWealth), borderColor: '#15803d', backgroundColor: 'rgba(21,128,61,0.07)', fill: true, tension: 0.4, borderWidth: 2, pointRadius: 3 },
+    { label: 'C: Hybrid', data: props.projsC.map(p => p.totalWealth), borderColor: '#92400e', backgroundColor: 'rgba(146,64,14,0.07)', fill: true, tension: 0.4, borderWidth: 2, pointRadius: 3 }
   ]
 }))
 

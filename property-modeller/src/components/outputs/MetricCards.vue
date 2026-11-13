@@ -18,7 +18,7 @@
       <div class="metric">
         <span class="mlabel">Cash Buffer</span>
         <span class="mvalue mono" :class="cashBuffer >= 0 ? 'text-green' : 'text-red'">{{ fDollar(cashBuffer) }}</span>
-        <span class="msub">{{ cashBuffer < 0 ? 'shortfall — needs funding' : 'remaining after costs' }}</span>
+        <span class="msub">{{ cashBuffer < 0 ? 'shortfall that needs funding' : 'remaining after costs' }}</span>
       </div>
     </el-card>
     <el-card>
