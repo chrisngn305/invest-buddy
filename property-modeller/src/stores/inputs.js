@@ -14,6 +14,7 @@ export const useInputsStore = defineStore('inputs', {
     depositAmount: 95000,
     ooRate: 6.50,
     invRate: 6.80,
+    rbaRates: null, // populated from public/rba-rates.json on startup
     loanTerm: 30,
     isIO: false,
     weeklyRent: 720,

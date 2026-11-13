@@ -1,0 +1,33 @@
+name: Update RBA rates
+
+on:
+  schedule:
+    - cron: '0 22 * * 0' # Mondays ~8-9am Sydney time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: property-modeller
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/fetch-rba-rates.mjs
+      - name: Commit if rates changed
+        run: |
+          # fetchedAt changes every run; only commit when an actual rate/date changed
+          if git diff --quiet -I'"fetchedAt"' -- public/rba-rates.json && git ls-files --error-unmatch public/rba-rates.json >/dev/null 2>&1; then
+            echo "No rate change"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add public/rba-rates.json
+          git commit -m "chore: update RBA rates"
+          git push

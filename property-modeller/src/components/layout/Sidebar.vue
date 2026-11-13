@@ -115,6 +115,11 @@
                 controls-position="right" :formatter="v => `${v}%`" :parser="v => v.replace('%', '')" />
             </div>
           </div>
+          <small v-if="inputs.rbaRates" class="hint rba-hint">
+            RBA avg new variable rate, {{ fmtMonth(inputs.rbaRates.ratesAsOf) }}
+            · cash rate {{ inputs.rbaRates.cashRate }}%
+            <a href="#" @click.prevent="resetToRba">reset</a>
+          </small>
           <div class="row-2">
             <div class="field">
               <label>Loan Term</label>
@@ -317,6 +322,12 @@ onMounted(() => {
 const fmtDollar = v => `$ ${v}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 const parseDollar = v => v.replace(/\$\s?|(,*)/g, '')
 
+const fmtMonth = iso => new Date(iso).toLocaleDateString('en-AU', { month: 'short', year: 'numeric' })
+function resetToRba() {
+  inputs.ooRate = inputs.rbaRates.ooRate
+  inputs.invRate = inputs.rbaRates.invRate
+}
+
 const MIN_WIDTH = 220
 const MAX_WIDTH = 480
 
@@ -478,6 +489,14 @@ function startResize(e) {
   font-size: 10px;
   color: var(--muted);
   margin-top: 2px;
+}
+.rba-hint {
+  display: block;
+  margin: -4px 0 8px;
+}
+.rba-hint a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 /* El-radio-group full width */

@@ -1,0 +1,9 @@
+{
+  "fetchedAt": "2026-11-13T08:10:40.118Z",
+  "ooRate": 6.2,
+  "invRate": 6.4,
+  "ratesAsOf": "2026-09-30",
+  "cashRate": 4.6,
+  "cashRateAsOf": "2026-10-31",
+  "source": "RBA F6 (new variable housing loans, all institutions) & F1.1 (cash rate target)"
+}
