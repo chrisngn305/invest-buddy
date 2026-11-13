@@ -115,7 +115,7 @@
                 controls-position="right" :formatter="v => `${v}%`" :parser="v => v.replace('%', '')" />
             </div>
           </div>
-          <small v-if="inputs.rbaRates" class="hint rba-hint">
+          <small class="hint rba-hint">
             RBA avg new variable rate, {{ fmtMonth(inputs.rbaRates.ratesAsOf) }}
             · cash rate {{ inputs.rbaRates.cashRate }}%
             <a href="#" @click.prevent="resetToRba">reset</a>

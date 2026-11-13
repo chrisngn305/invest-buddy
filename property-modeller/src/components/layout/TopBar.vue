@@ -7,7 +7,7 @@
       <div class="logo-badge">Brisbane Modeller</div>
       <div class="topbar-links">
         <span class="topbar-link">2026</span>
-        <span class="topbar-link">RBA 4.10%</span>
+        <span class="topbar-link" :title="`RBA cash rate target, ${inputs.rbaRates.cashRateAsOf}`">RBA {{ inputs.rbaRates.cashRate.toFixed(2) }}%</span>
       </div>
     </div>
     <div class="topbar-right">
@@ -17,6 +17,9 @@
 </template>
 
 <script setup>
+import { useInputsStore } from '../../stores/inputs.js'
+
+const inputs = useInputsStore()
 defineEmits(['calculate', 'toggle-sidebar'])
 </script>
 

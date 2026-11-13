@@ -23,11 +23,11 @@ jobs:
       - name: Commit if rates changed
         run: |
           # fetchedAt changes every run; only commit when an actual rate/date changed
-          if git diff --quiet -I'"fetchedAt"' -- public/rba-rates.json && git ls-files --error-unmatch public/rba-rates.json >/dev/null 2>&1; then
+          if git diff --quiet -I'"fetchedAt"' -- src/data/rba-rates.json && git ls-files --error-unmatch src/data/rba-rates.json >/dev/null 2>&1; then
             echo "No rate change"; exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add public/rba-rates.json
+          git add src/data/rba-rates.json
           git commit -m "chore: update RBA rates"
           git push

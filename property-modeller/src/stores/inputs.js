@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import rbaRates from '../data/rba-rates.json'
 
 export const useInputsStore = defineStore('inputs', {
   state: () => ({
@@ -12,9 +13,10 @@ export const useInputsStore = defineStore('inputs', {
     price: 950000,
     isNewBuild: false,
     depositAmount: 95000,
-    ooRate: 6.50,
-    invRate: 6.80,
-    rbaRates: null, // populated from public/rba-rates.json on startup
+    // Defaults come from the RBA snapshot refreshed weekly by .github/workflows/rba-rates.yml
+    ooRate: rbaRates.ooRate,
+    invRate: rbaRates.invRate,
+    rbaRates,
     loanTerm: 30,
     isIO: false,
     weeklyRent: 720,

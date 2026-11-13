@@ -1,5 +1,5 @@
 // Fetches the latest housing lending rates + cash rate from the RBA and writes
-// public/rba-rates.json. Run weekly by .github/workflows/rba-rates.yml
+// src/data/rba-rates.json (bundled into the app at build time). Run weekly by .github/workflows/rba-rates.yml
 // (the RBA doesn't send CORS headers, so the browser can't fetch these directly).
 //
 //   node scripts/fetch-rba-rates.mjs
@@ -7,7 +7,7 @@
 import { writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
-const OUT = fileURLToPath(new URL('../public/rba-rates.json', import.meta.url))
+const OUT = fileURLToPath(new URL('../src/data/rba-rates.json', import.meta.url))
 const BASE = 'https://www.rba.gov.au/statistics/tables/csv'
 
 // F6: Housing lending rates. "New loans funded in the month; Variable-rate; All institutions"
